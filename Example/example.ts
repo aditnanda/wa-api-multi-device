@@ -4,11 +4,14 @@ import { send } from 'process';
 import makeWASocket, { AnyMessageContent, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useSingleFileAuthState } from '../src'
 const express = require('express');
 const http = require("http");
+const qrcode = require("qrcode");
+const fs = require("fs");
 const app = express();
 const server = http.createServer(app);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/view'));
+
 
 const configs = {
     port: 3102, // custom port to access server
@@ -33,7 +36,7 @@ const startSock = async() => {
 
 	const sock = makeWASocket({
 		version,
-		logger: P({ level: 'trace' }),
+		logger: P({ level: 'debug' }),
 		printQRInTerminal: true,
 		auth: state,
 		// implement to handle retries
@@ -90,6 +93,22 @@ const startSock = async() => {
 				console.log('connection closed')
 			}
 		}
+		if (update.qr) { // if the 'qr' property is available on 'conn'
+			console.log('QR Generated',update.qr);
+			generate(update.qr)
+			// qr.toFile(resolvePath(__dirname, '..', 'qr.png'), update.qr); // generate the file
+		} else if (update.connection && update.connection === 'close') { // when websocket is closed
+			// if (existsSync(resolvePath(__dirname, '..', 'qr.png'))) { // and, the QR file is exists
+			// 	unlinkSync(resolvePath(__dirname, '..', 'qr.png')); // delete it
+			// }
+			if (fs.existsSync('Example/view/qrcode.png')) {
+				fs.unlinkSync('Example/view/qrcode.png')
+			}
+		}else{
+			if (fs.existsSync('Example/view/qrcode.png')) {
+				fs.unlinkSync('Example/view/qrcode.png')
+			}
+		}
         
 		console.log('connection update', update)
 	})
@@ -140,7 +159,7 @@ const startSock = async() => {
 				const sentMsg  = await sock.sendMessage(phoneNumberFormatter(numberArray[index]), { text: message })
 
 				statusB.push(sentMsg)
-				
+				sleep(getRandomInt(1000,5000))
 			}
 
 			res.end(JSON.stringify({
@@ -152,10 +171,28 @@ const startSock = async() => {
 		}
 	}); 
 
+	app.get('/',function(req,res) {
+		res.sendFile('view/index.html', { root: __dirname })
+	});
+
 	return sock
 }
 
 startSock()
+
+const sleep = (milliseconds) => {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+};
+
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
 
 const phoneNumberFormatter = function (number) {
     // 1. Menghilangkan karakter selain angka
@@ -176,6 +213,13 @@ const phoneNumberFormatter = function (number) {
     }
 
     return formatted;
+}
+
+const generate = async function (input) {
+	var rawData = await qrcode.toDataURL(input, { scale: 8 })
+	var dataBase64 = rawData.replace(/^data:image\/png;base64,/, "")
+	fs.writeFileSync('Example/view/qrcode.png', dataBase64, 'base64')
+	console.log("Success generate image qr")
 }
 
 server.listen(configs.port, function () {

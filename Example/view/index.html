@@ -1,0 +1,149 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>NAND Bot</title>
+    <meta name="description" content="">
+    <meta name="author" content="Aditya Nanda Utama, S.Kom">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="media/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="font/flaticon.css">
+    <!-- Magic popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="css/fxt-animation.css">
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrapper">
+        
+        <!-- Main Body Area Start Here -->
+        <div class="fxt-template-layout19">
+            <div class="fxt-main-content has-animation">
+                <div class="container-fluid full-width">
+                    <div class="row no-gutters">                       
+                        <div class="col-lg-6 order-lg-2 fxt-right-content">
+                            <div class="fxt-logo">
+                                <div class="translate-bottom-100 transition-100 transition-delay-500">
+                                    <!-- <a href="#"><img src="media/logo-dark.png" alt="Logo"></a> -->
+                                </div>
+                            </div>
+                            <div class="fxt-contents">
+                                <div class="translate-bottom-100 transition-100 transition-delay-300">
+                                    <p>Scan QR Below to Connect in Our Whatsapp API</p>
+                                </div>
+                                <div class="translate-bottom-100 transition-100 transition-delay-800">
+                                    <img id="qr" src="./qrcode.png" alt=""  style="height: 200px;">
+                                </div>
+                                                
+                                <div class="fxt-buttons">
+  
+                                </div>
+                            </div>
+                            <div class="fxt-socials">
+                                <ul>
+                                </ul>
+                            </div>
+                            <div class="translate-bottom-100 transition-100 transition-delay-2700">
+                                <div class="fxt-footer">
+                                    <p>&copy; 2022 NAND Bot — All Rights Reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1 fxt-bg-color">
+                            <div class="fxt-figure">
+                                <div class="translate-left-100 transition-200 transition-delay-1000">
+                                    <img src="media/figure/bg11.png" alt="Figure">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="fxt-page-content" class="fxt-page-content">
+                
+            </div>
+        </div>
+        <!-- Main Body Area End Here -->
+        <!-- Modal Area Start Here -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="notify-icon">
+                            <img src="media/elements/bell-icon.png" alt="Bell">
+                        </div>
+                        <h2 class="item-title">Subscribe Now</h2>
+                        <p>Be first to know about the latest updates and get exclusive offer on our grand opening</p>
+                        <form action="https://affixtheme.com/html/muliyo/demo/vendor/php/subscribe.php" class="subscribe-form" method="POST" data-pixsaas="newsletter-subscribe">
+                            <div class="input-group stylish-input-group">
+                                <div class="item-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <input type="email" name="email" class="form-control" id="newsletter-form-email" placeholder="Enter your Email" required>
+                                <span class="input-group-addon">
+                                    <button type="submit">Subscribe</button>
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-result alert">
+                                <div class="content"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Area End Here -->
+    </div>
+    <!-- jquery-->
+    <script src="js/jquery-3.5.0.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Pace Preloader js -->
+    <script src="js/pace.min.js"></script>
+    <!-- Imagesloaded js -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <!-- Magic Popup js -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <!-- Validator js -->
+    <script src="js/validator.min.js"></script>    
+    <!-- Custom Js -->
+    <script src="js/main.js"></script>
+
+
+    <script>
+        setInterval(function(){
+            $("#qr").attr("src", "/qrcode.png?"+new Date().getTime());
+        },2000);
+
+    </script>
+
+</body>
+
+
+</html>

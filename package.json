@@ -39,12 +39,15 @@
     "axios": "^0.24.0",
     "curve25519-js": "^0.0.4",
     "express": "^4.17.3",
+    "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "libsignal": "git+https://github.com/adiwajshing/libsignal-node",
     "music-metadata": "^7.4.1",
     "node-cache": "^5.1.2",
     "pino": "^7.0.0",
     "protobufjs": "^6.10.1",
+    "qr": "^0.2.4",
+    "qrcode": "^1.5.0",
     "ws": "^8.0.0"
   },
   "peerDependencies": {
